@@ -36,6 +36,14 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* CUSTOM VARIABLES */
+  --fontFamily-poppins: "Poppins", sans-serif;
+  --main: oklch(0.71 0.1868 41.75); /* #FF7235 - Bright Orange */
+  --background: oklch(0.98 0.0011 17.18); /* #F9F8F8 - Soft White */
+  --surface: oklch(0.92 0 0); /* #E4E4E4 Light Gray */
+  --heading: oklch(0.23 0 0); /* #1C1C1C - Dark Gray */
+  --body: oklch(0.29 0 0); /* #2A2A2A- Slightly Lighter Gray */
 }
 
 .dark {
@@ -70,6 +78,13 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* CUSTOM VARIABLES */
+  /* --main: oklch(0.71 0.1868 41.75);
+  --background: oklch(0.23 0 0);
+  --surface: oklch(0.29 0 0);
+  --heading: oklch(0.92 0 0);
+  --body: oklch(0.98 0.0011 17.18); */
 }
 
 @theme inline {
@@ -108,13 +123,21 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* CUSTOM VARIABLES */
+  --font-poppins: var(--fontFamily-poppins);
+  --color-main: var(--main);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-heading: var(--heading);
+  --color-body: var(--body);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply box-border p-0 m-0;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply antialiased font-poppins bg-background;
   }
 }

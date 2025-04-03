@@ -1,0 +1,20 @@
+{
+  "productions": [
+    {
+      "expenses": {
+        "bedsheetMaterials": {
+          "yards": "",
+          "ratePerYard": "",
+          "totalCost": ""
+        },
+        "packaging": {
+          
+        },
+        "fancyBags": {},
+        "transportationFee": {},
+        "threadFee": {},
+        "totalExpenses": ""
+      }
+    }
+  ]
+}

@@ -153,3 +153,24 @@
 ---
 
 This document provides a structured plan for the **BlissTrack** web application, ensuring a simple, intuitive, and visually appealing experience for the business owner. 🚀
+
+Primary Color:
+Soft Blue: #4B89DC (This will be the main color used for primary actions like buttons, links, and important elements).
+
+Secondary Color:
+Warm Light Beige: #F4D3B3 (This will be used for backgrounds to create a soft, warm atmosphere).
+
+Text Colors:
+Primary Text (Dark): #333333 (Dark gray for normal text, providing high contrast and readability).
+
+Secondary Text (Muted): #666666 (A medium gray for secondary text, such as placeholders or less important info).
+
+Background Colors:
+Main Background: #FFFFFF (White, for most backgrounds to keep the design clean and bright).
+
+Card Background: #F9F9F9 (Light gray for cards or containers, ensuring they stand out from the main background).
+
+Accent Colors:
+Success: #A3E4B3 (A soft green for success messages or confirmations).
+
+Alert/Error: #F7A3A3 (A soft red for warnings or error messages)
