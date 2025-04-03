@@ -1,9 +1,13 @@
+import BottomNav from "@/components/navigation/BottomNav";
 import { Outlet } from "react-router";
 
 export default function AppLayout() {
   return (
-    <div>
-      <Outlet />
-    </div>
+    <>
+      <div className="pb-28">
+        <Outlet />
+      </div>
+      <BottomNav />
+    </>
   );
 }
