@@ -28,8 +28,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div className="space-y-1">
-            <p className="text-sm font-medium text-gray-500">{title}</p>
-            <p className="text-2xl font-bold">{value}</p>
+            <p className="text-sm font-medium text-neutral-900">{title}</p>
+            <p className="text-2xl font-bold text-neutral-500">{value}</p>
 
             {trend && (
               <div className="flex items-center text-xs mt-1">
@@ -42,7 +42,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
                   {trend.isPositive ? "+" : ""}
                   {trend.value}%
                 </span>
-                <span className="text-gray-500 ml-1">from last month</span>
+                <span className="text-bliss-500 ml-1">from last month</span>
               </div>
             )}
           </div>

@@ -52,10 +52,10 @@ const Dashboard = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">
-          Overview of your bedding business.
-        </p>
+        <h1 className="text-2xl font-bold tracking-tight text-neutral-800">
+          Dashboard
+        </h1>
+        <p className="text-neutral-500">Overview of your bedding business.</p>
       </div>
 
       {/* Metrics Cards */}
@@ -65,18 +65,21 @@ const Dashboard = () => {
           value={formatNaira(financialSummary.totalSales)}
           icon={ShoppingBag}
           iconClassName="bg-primary"
+          className="bg-white"
         />
         <MetricCard
           title="Total Expenses"
           value={formatNaira(financialSummary.totalExpenses)}
           icon={DollarSign}
           iconClassName="bg-accent"
+          className="bg-white"
         />
         <MetricCard
           title="Current Stock"
           value={`${financialSummary.totalStock} Items`}
           icon={Package}
           iconClassName="bg-secondary"
+          className="bg-white"
         />
         <MetricCard
           title="Profit/Loss"
@@ -85,6 +88,7 @@ const Dashboard = () => {
           iconClassName={
             financialSummary.profit >= 0 ? "bg-green-500" : "bg-red-500"
           }
+          className="bg-white"
         />
       </div>
 

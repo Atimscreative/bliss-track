@@ -77,14 +77,18 @@ const MainLayout: React.FC = () => {
           <div className="flex items-center">
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu className="h-6 w-6" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden bg-bliss-50"
+                >
+                  <Menu className="h-[20px_!important] w-[20px_!important] grow" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-[240px] p-0">
+              <SheetContent side="left" className="w-[240px] bg-gray-50 p-0">
                 <div className="py-6 px-4">
                   <div className="flex items-center justify-between mb-6">
-                    <span className="font-bold text-xl text-primary">
+                    <span className="font-bold text-xl text-bliss-500">
                       BlissTrack
                     </span>
                   </div>
@@ -98,8 +102,9 @@ const MainLayout: React.FC = () => {
                           cn(
                             "flex items-center px-3 py-3 rounded-md text-sm transition-colors",
                             {
-                              "bg-bliss-500 text-primary font-medium": isActive,
-                              "text-gray-700 hover:bg-gray-100": !isActive,
+                              "bg-bliss-500 text-white font-medium": isActive,
+                              "text-gray-700 hover:bg-bliss-50 hover:text-bliss-500":
+                                !isActive,
                             }
                           )
                         }
@@ -122,7 +127,7 @@ const MainLayout: React.FC = () => {
                 </div>
               </SheetContent>
             </Sheet>
-            <h1 className="text-xl font-bold text-primary ml-2 md:ml-0">
+            <h1 className="text-xl font-semibold text-bliss-500 ml-2 md:ml-0">
               BlissTrack
             </h1>
           </div>
@@ -131,7 +136,7 @@ const MainLayout: React.FC = () => {
             <span className="hidden md:inline text-sm font-medium text-gray-600">
               {currentUser.name}
             </span>
-            <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary text-white">
+            <div className="flex items-center justify-center h-8 w-8 rounded-full bg-bliss-500 text-white">
               <User className="h-4 w-4" />
             </div>
           </div>
