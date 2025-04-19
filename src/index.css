@@ -155,6 +155,7 @@
   --color-bliss-800: oklch(0.43 0.1988 293.45);
   --color-bliss-900: oklch(0.38 0.1676 294.37);
   --color-bliss-950: oklch(0.28 0.1283 291.55);
+  --color-main: oklch(0.77 0.103 43.97);
 }
 
 @layer base {
@@ -163,7 +164,7 @@
   }
 
   body {
-    @apply antialiased font-poppins bg-bg text-body;
+    @apply antialiased font-poppins;
   }
 
   h1,

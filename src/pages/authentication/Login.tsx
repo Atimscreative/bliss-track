@@ -31,43 +31,49 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-bliss-lavender/30 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-bliss-50 px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-primary mb-2">BlissTrack</h1>
+          <h1 className="text-3xl font-bold mb-2 text-bliss-500">BlissTrack</h1>
           <p className="text-gray-600">Oluwaseyi Bliss Beddings</p>
         </div>
 
-        <Card>
+        <Card className="bg-white">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">
+            <CardTitle className="text-2xl font-bold text-neutral-800 text-center ">
               Login
             </CardTitle>
-            <CardDescription className="text-center">
+            <CardDescription className="text-center text-neutral-600">
               Enter your credentials to access your account
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleSubmit}>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-neutral-600">
+                  Email
+                </Label>
                 <Input
                   id="email"
                   type="email"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="border border-neutral-300 h-10 focus-visible:ring-2 focus-visible:ring-bliss-500 focus-visible:border-0 text-neutral-600"
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-neutral-600">
+                  Password
+                </Label>
                 <Input
                   id="password"
                   type="password"
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="border border-neutral-300 h-10 focus-visible:ring-2 focus-visible:ring-bliss-500 focus-visible:border-0 text-neutral-600"
                   required
                 />
               </div>
@@ -80,7 +86,7 @@ const Login = () => {
             <CardFooter>
               <Button
                 type="submit"
-                className="w-full bg-primary hover:bg-primary/90"
+                className="w-full bg-bliss-500 hover:bg-bliss-600 h-10 mt-6 text-white"
                 disabled={isLoading}
               >
                 {isLoading ? "Logging in..." : "Login"}

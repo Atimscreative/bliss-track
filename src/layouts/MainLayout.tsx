@@ -98,8 +98,7 @@ const MainLayout: React.FC = () => {
                           cn(
                             "flex items-center px-3 py-3 rounded-md text-sm transition-colors",
                             {
-                              "bg-bliss-lavender text-primary font-medium":
-                                isActive,
+                              "bg-bliss-500 text-primary font-medium": isActive,
                               "text-gray-700 hover:bg-gray-100": !isActive,
                             }
                           )
