@@ -1,12 +1,211 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Sun1 } from "iconsax-react";
-import { ArrowDownLeft, ArrowUpRight, Plus } from "lucide-react";
-import { Link } from "react-router";
+import MetricCard from "@/components/dashboard/MetricCard";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  BarChart,
+  PieChart,
+  Pie,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Cell,
+} from "recharts";
+import {
+  ShoppingBag,
+  DollarSign,
+  Package,
+  TrendingUp,
+  AlertTriangle,
+} from "lucide-react";
+import {
+  financialSummary,
+  formatNaira,
+  // sales,
+  // expenses,
+  stock,
+} from "@/services/mockData";
 
-export default function Dashboard() {
+const lowStockItems = stock.filter(
+  (item) => item.quantity <= item.alertThreshold
+);
+
+const salesData = [
+  { name: "Jan", amount: 20000 },
+  { name: "Feb", amount: 35000 },
+  { name: "Mar", amount: 28000 },
+  { name: "Apr", amount: 50000 },
+];
+
+const stockData = [
+  { name: "4.5", value: 15 },
+  { name: "4x6", value: 10 },
+  { name: "6x6", value: 8 },
+  { name: "6x6 Pillows", value: 5 },
+];
+
+const COLORS = ["#E5DEFF", "#D3E4FD", "#FEF7CD", "#FDE1D3", "#F2FCE2"];
+
+const Dashboard = () => {
   return (
-    <>
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
+        <p className="text-muted-foreground">
+          Overview of your bedding business.
+        </p>
+      </div>
+
+      {/* Metrics Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <MetricCard
+          title="Total Sales"
+          value={formatNaira(financialSummary.totalSales)}
+          icon={ShoppingBag}
+          iconClassName="bg-primary"
+        />
+        <MetricCard
+          title="Total Expenses"
+          value={formatNaira(financialSummary.totalExpenses)}
+          icon={DollarSign}
+          iconClassName="bg-accent"
+        />
+        <MetricCard
+          title="Current Stock"
+          value={`${financialSummary.totalStock} Items`}
+          icon={Package}
+          iconClassName="bg-secondary"
+        />
+        <MetricCard
+          title="Profit/Loss"
+          value={formatNaira(financialSummary.profit)}
+          icon={TrendingUp}
+          iconClassName={
+            financialSummary.profit >= 0 ? "bg-green-500" : "bg-red-500"
+          }
+        />
+      </div>
+
+      {/* Charts */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Sales Chart */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Monthly Sales</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-[300px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  data={salesData}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip
+                    formatter={(value) => formatNaira(value as number)}
+                    labelFormatter={(label) => `Month: ${label}`}
+                  />
+                  <Legend />
+                  <Bar dataKey="amount" name="Sales" fill="#E5DEFF" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Stock Distribution */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Stock Distribution</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-[300px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={stockData}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    outerRadius={100}
+                    fill="#8884d8"
+                    dataKey="value"
+                    label={({ name, percent }) =>
+                      `${name} ${(percent * 100).toFixed(0)}%`
+                    }
+                  >
+                    {stockData.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(value) => `${value} items`} />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Low Stock Alert */}
+      {lowStockItems.length > 0 && (
+        <Card className="border-amber-300">
+          <CardHeader className="bg-amber-50 border-b border-amber-200">
+            <CardTitle className="text-lg flex items-center text-amber-800">
+              <AlertTriangle className="h-5 w-5 mr-2 text-amber-600" />
+              Low Stock Alert
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="divide-y">
+              {lowStockItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="p-4 flex justify-between items-center"
+                >
+                  <div>
+                    <p className="font-medium">{item.name}</p>
+                    <p className="text-sm text-gray-500">
+                      Current: {item.quantity} | Alert when below:{" "}
+                      {item.alertThreshold}
+                    </p>
+                  </div>
+                  <div className="text-amber-600 font-semibold">Low Stock</div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+};
+
+export default Dashboard;
+
+/* 
+4½ ft → Twin
+
+6×6 ft → King
+
+4×6 ft → Single
+
+6×6 ft (4P) → King+
+
+
+   <div>
       <header className=" py-4">
         <div className="wrapper flex justify-between">
           <div>
@@ -17,7 +216,7 @@ export default function Dashboard() {
             <h1 className="font-semibold text-xl">Welcome, Oluwaseyi Bliss!</h1>
           </div>
 
-          {/* USER PROFILE */}
+    
           <span className="border-2 rounded-full border-main w-10 h-10 inline-flex justify-center items-center">
             BT
           </span>
@@ -59,7 +258,7 @@ export default function Dashboard() {
           </div>
         </div>
       </section>
-      {/* QUICK ACTIONS */}
+   
       <div className="wrapper flex justify-center gap-2 *:grow mt-5">
         <Button className="text-heading h-auto py-3 bg-transparent border shadow-none border-heading">
           <Plus size={20} className="" />
@@ -70,7 +269,7 @@ export default function Dashboard() {
           Add Expenses
         </Button>
       </div>{" "}
-      {/* LATEST SALES */}
+
       <div className="wrapper mt-8">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold text-heading">Latest Sales</h2>
@@ -105,7 +304,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      {/* LATEST EXPENSES */}
+
       <div className="wrapper mt-8">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold text-heading">
@@ -145,18 +344,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-    </>
-  );
-}
-
-/* 
-4½ ft → Twin
-
-6×6 ft → King
-
-4×6 ft → Single
-
-6×6 ft (4P) → King+
+    </div>
 
 
 */

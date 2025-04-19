@@ -174,3 +174,21 @@ Accent Colors:
 Success: #A3E4B3 (A soft green for success messages or confirmations).
 
 Alert/Error: #F7A3A3 (A soft red for warnings or error messages)
+
+
+
+
+
+// BlissTrack custom colors
+				lavender: {
+					light: '#E5DEFF',
+					DEFAULT: '#9b87f5',
+					dark: '#7E69AB'
+				},
+				bliss: {
+					blue: '#D3E4FD',
+					cream: '#FEF7CD',
+					peach: '#FDE1D3',
+					pink: '#FFDEE2',
+					green: '#F2FCE2',
+				},
