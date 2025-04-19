@@ -4,6 +4,12 @@ import NotFound from "./pages/NotFound";
 import { useAuth } from "./hooks/useAuth";
 import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/authentication/Login";
+import Expenses from "./pages/dashboard/Expenses";
+import Inventory from "./pages/dashboard/Inventory";
+import Pricing from "./pages/dashboard/Pricing";
+import Sales from "./pages/dashboard/Sales";
+import Analysis from "./pages/dashboard/Analysis";
+import Settings from "./pages/dashboard/Settings";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { currentUser } = useAuth();
@@ -30,12 +36,12 @@ function App() {
             }
           >
             <Route path="/" element={<Dashboard />} />
-            {/* <Route path="/expenses" element={<Expenses />} /> */}
-            {/* <Route path="/inventory" element={<Inventory />} /> */}
-            {/* <Route path="/pricing" element={<Pricing />} /> */}
-            {/* <Route path="/sales" element={<Sales />} /> */}
-            {/* <Route path="/analysis" element={<Analysis />} /> */}
-            {/* <Route path="/settings" element={<Settings />} /> */}
+            <Route path="/expenses" element={<Expenses />} />
+            <Route path="/inventory" element={<Inventory />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/sales" element={<Sales />} />
+            <Route path="/analysis" element={<Analysis />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
