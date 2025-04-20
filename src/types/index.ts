@@ -34,6 +34,7 @@ export interface Sale {
   totalAmount: number;
   date: string;
   soldBy: string;
+  status?: "pending" | "completed" | "cancelled";
 }
 
 export interface SaleItem {
@@ -67,4 +68,42 @@ export interface FinancialSummary {
   totalExpenses: number;
   profit: number;
   totalStock: number;
+}
+
+export interface CartItem {
+  id: string;
+  name: string;
+  size: BedSize;
+  price: number;
+  quantity: number;
+}
+
+export interface Order {
+  id: string;
+  customerId: string;
+  customerName: string;
+  items: OrderItem[];
+  total: number;
+  date: string;
+  status: "pending" | "completed" | "cancelled";
+}
+
+export interface OrderItem {
+  productId: string;
+  name: string;
+  size: BedSize;
+  price: number;
+  quantity: number;
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  size: BedSize;
+  quantity: number;
+  status: "draft" | "published";
+  createdAt: string;
+  updatedAt: string;
 }

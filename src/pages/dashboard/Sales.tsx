@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { PlusCircle } from "lucide-react";
 import { sales } from "@/services/mockData";
 import { formatNaira } from "@/services/mockData";
-import InvoiceDialog from "@/components/dashboard/sales/InvoiceDialog";
+import InvoiceDialog from "@/components/widgets/InvoiceDialog";
 
 const Sales = () => {
   const [filteredSales, setFilteredSales] = useState<Sale[]>(sales);
