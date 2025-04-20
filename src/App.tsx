@@ -15,6 +15,7 @@ import Products from "./pages/dashboard/Products";
 import Cart from "./pages/user/Cart";
 import Checkout from "./pages/user/Checkout";
 import Orders from "./pages/user/Orders";
+import CustomerProfile from "./pages/user/CustomerProfile";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { currentUser } = useAuth();
@@ -48,6 +49,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/my-profile" element={<CustomerProfile />} />
 
           <Route
             element={

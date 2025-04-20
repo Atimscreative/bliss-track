@@ -107,3 +107,19 @@ export interface Product {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface BillingAddress {
+  id: string;
+  userId: string;
+  name: string;
+  street: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  isDefault: boolean;
+}
+
+export interface UserProfile extends User {
+  phone?: string;
+  addresses: BillingAddress[];
+}
