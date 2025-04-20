@@ -145,7 +145,7 @@ const Dashboard = () => {
                       `${name} ${(percent * 100).toFixed(0)}%`
                     }
                   >
-                    {stockData.map((entry, index) => (
+                    {stockData.map((_, index) => (
                       <Cell
                         key={`cell-${index}`}
                         fill={COLORS[index % COLORS.length]}
