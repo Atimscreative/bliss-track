@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Package, Plus, Search, AlertTriangle } from "lucide-react";
 import { stock } from "@/services/mockData";
+import { cn } from "@/lib/utils";
 // import { StockItem } from "@/types";
 
 const Inventory = () => {
@@ -96,13 +97,23 @@ const Inventory = () => {
       )}
 
       <Tabs defaultValue="view">
-        <TabsList className="grid grid-cols-2 mb-4">
-          <TabsTrigger value="view">View Inventory</TabsTrigger>
-          <TabsTrigger value="add">Add New Stock</TabsTrigger>
+        <TabsList className="grid sm:max-w-sm grid-cols-2 w-full mb-4 h-max p-1 bg-bliss-100">
+          <TabsTrigger
+            value="view"
+            className="data-[state=active]:bg-bliss-500 data-[state=active]:text-white py-2"
+          >
+            View Inventory
+          </TabsTrigger>
+          <TabsTrigger
+            value="add"
+            className="data-[state=active]:bg-bliss-500 data-[state=active]:text-white py-2"
+          >
+            Add New Stock
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="view">
-          <Card>
+          <Card className="shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
             <CardHeader>
               <CardTitle>Current Stock</CardTitle>
               <CardDescription>
@@ -152,7 +163,7 @@ const Inventory = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="rounded-md border">
+              <div className="rounded-md shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
                 <div className="grid grid-cols-4 p-3 bg-muted/50 font-medium">
                   <div>Item</div>
                   <div>Type</div>
@@ -205,7 +216,7 @@ const Inventory = () => {
         </TabsContent>
 
         <TabsContent value="add">
-          <Card>
+          <Card className="shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Package className="h-5 w-5 mr-2" />
@@ -216,104 +227,116 @@ const Inventory = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleAddStock} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="item-type">Item Type</Label>
-                  <div className="flex gap-4">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="type-bedsheet"
-                        name="item-type"
-                        value="bedsheet"
-                        checked={newItemType === "bedsheet"}
-                        onChange={() => setNewItemType("bedsheet")}
-                        className="mr-2"
-                      />
-                      <Label htmlFor="type-bedsheet">Bedsheet</Label>
-                    </div>
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="type-packaging"
-                        name="item-type"
-                        value="packaging"
-                        checked={newItemType === "packaging"}
-                        onChange={() => setNewItemType("packaging")}
-                        className="mr-2"
-                      />
-                      <Label htmlFor="type-packaging">Packaging</Label>
+              <div className="max-w-lg">
+                <form onSubmit={handleAddStock} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="item-type">Item Type</Label>
+                    <div className="flex gap-4">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="type-bedsheet"
+                          name="item-type"
+                          value="bedsheet"
+                          checked={newItemType === "bedsheet"}
+                          onChange={() => setNewItemType("bedsheet")}
+                          className="mr-2"
+                        />
+                        <Label htmlFor="type-bedsheet">Bedsheet</Label>
+                      </div>
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="type-packaging"
+                          name="item-type"
+                          value="packaging"
+                          checked={newItemType === "packaging"}
+                          onChange={() => setNewItemType("packaging")}
+                          className="mr-2"
+                        />
+                        <Label htmlFor="type-packaging">Packaging</Label>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="item-name">Item Name</Label>
-                  <Input
-                    id="item-name"
-                    placeholder="e.g., Premium Cotton Bedsheet"
-                    value={newItemName}
-                    onChange={(e) => setNewItemName(e.target.value)}
-                    required
-                  />
-                </div>
-
-                {newItemType === "bedsheet" && (
                   <div className="space-y-2">
-                    <Label htmlFor="item-size">Bedsheet Size</Label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {["4.5", "4x6", "6x6", "6x6-pillows"].map((size) => (
-                        <Button
-                          key={size}
-                          type="button"
-                          variant={newItemSize === size ? "default" : "outline"}
-                          onClick={() => setNewItemSize(size)}
-                          className="justify-center"
-                        >
-                          {size === "6x6-pillows" ? "6x6 + Pillows" : size}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="quantity">Quantity</Label>
+                    <Label htmlFor="item-name">Item Name</Label>
                     <Input
-                      id="quantity"
-                      type="number"
-                      placeholder="e.g., 10"
-                      value={newItemQuantity}
-                      onChange={(e) => setNewItemQuantity(e.target.value)}
+                      id="item-name"
+                      placeholder="e.g., Premium Cotton Bedsheet"
+                      value={newItemName}
+                      onChange={(e) => setNewItemName(e.target.value)}
                       required
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="threshold">
-                      Low Stock Alert Threshold
-                      <span className="text-xs text-gray-500 block">
-                        Alert when stock falls below this number
-                      </span>
-                    </Label>
-                    <Input
-                      id="threshold"
-                      type="number"
-                      placeholder="e.g., 5"
-                      value={newItemThreshold}
-                      onChange={(e) => setNewItemThreshold(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
 
-                <div className="pt-2">
-                  <Button type="submit" className="w-full">
-                    <Plus className="mr-2 h-4 w-4" />
-                    Add to Inventory
-                  </Button>
-                </div>
-              </form>
+                  {newItemType === "bedsheet" && (
+                    <div className="space-y-2">
+                      <Label htmlFor="item-size">Bedsheet Size</Label>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        {["4.5", "4x6", "6x6", "6x6-pillows"].map((size) => (
+                          <Button
+                            key={size}
+                            type="button"
+                            variant={
+                              newItemSize === size ? "default" : "outline"
+                            }
+                            onClick={() => setNewItemSize(size)}
+                            className={cn(
+                              "justify-center ",
+                              newItemSize === size
+                                ? "bg-bliss-500 text-white hover:bg-bliss-400 hover:text-white"
+                                : "border-2 border-bliss-500 text-bliss-500 hover:bg-bliss-100 hover:text-bliss-500"
+                            )}
+                          >
+                            {size === "6x6-pillows" ? "6x6 + Pillows" : size}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="quantity">Quantity</Label>
+                      <Input
+                        id="quantity"
+                        type="number"
+                        placeholder="e.g., 10"
+                        value={newItemQuantity}
+                        onChange={(e) => setNewItemQuantity(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="threshold">
+                        Low Stock Alert Threshold
+                        <span className="text-xs text-gray-500 block">
+                          Alert when stock falls below this number
+                        </span>
+                      </Label>
+                      <Input
+                        id="threshold"
+                        type="number"
+                        placeholder="e.g., 5"
+                        value={newItemThreshold}
+                        onChange={(e) => setNewItemThreshold(e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="pt-2">
+                    <Button
+                      type="submit"
+                      className="w-full py-3 bg-bliss-500 hover:bg-bliss-400 text-white"
+                    >
+                      <Plus className="mr-2 h-4 w-4" />
+                      Add to Inventory
+                    </Button>
+                  </div>
+                </form>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>

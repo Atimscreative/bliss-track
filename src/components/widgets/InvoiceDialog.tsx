@@ -18,7 +18,11 @@ const InvoiceDialog = ({ sale }: InvoiceDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button
+          variant="outline"
+          className="border-bliss-500 py-3 text-sm border-2 text-bliss-500 hover:bg-bliss-50 hover:text-bliss-500"
+          size="sm"
+        >
           <FileText className="mr-2 h-4 w-4" />
           View Invoice
         </Button>

@@ -24,16 +24,22 @@ const Pricing = () => {
         <h1 className="text-2xl font-semibold  tracking-tight text-neutral-800">
           Pricing
         </h1>
-        <Button onClick={() => setEditMode(!editMode)}>
+        <Button
+          className="bg-bliss-500 text-white hover:bg-bliss-500"
+          onClick={() => setEditMode(!editMode)}
+        >
           {editMode ? "Save Changes" : "Update Prices"}
         </Button>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         {currentPrices.map((price) => (
-          <Card key={price.size} className="p-4">
+          <Card
+            key={price.size}
+            className="p-4 shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80"
+          >
             <div className="flex items-start space-x-4">
-              <Tag className="h-5 w-5 text-primary" />
+              <Tag size={20} className="text-bliss-500 translate-x-1" />
               <div className="flex-1">
                 <Label className="text-lg font-medium">
                   {price.size} Bedsheet
@@ -46,11 +52,11 @@ const Pricing = () => {
                       onChange={(e) =>
                         handleUpdatePrice(price.size, Number(e.target.value))
                       }
-                      className="text-lg font-bold"
+                      className="text-lg font-medium"
                     />
                   </div>
                 ) : (
-                  <p className="text-lg font-bold text-primary mt-2">
+                  <p className="text-lg font-semibold text-bliss-500 mt-2">
                     {formatNaira(price.price)}
                   </p>
                 )}

@@ -1,6 +1,6 @@
 // Common types used throughout the application
 
-export type UserRole = "admin" | "staff";
+export type UserRole = "admin" | "staff" | "user";
 
 export interface User {
   id: string;

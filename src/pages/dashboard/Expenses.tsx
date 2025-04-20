@@ -153,13 +153,13 @@ const Expenses = () => {
         <TabsList className="grid sm:max-w-sm grid-cols-2 w-full mb-4 h-max p-1 bg-bliss-100">
           <TabsTrigger
             value="view"
-            className="data-[state=active]:bg-bliss-500 data-[state=active]:text-white py-3"
+            className="data-[state=active]:bg-bliss-500 data-[state=active]:text-white py-2"
           >
             View Expenses
           </TabsTrigger>
           <TabsTrigger
             value="add"
-            className="data-[state=active]:bg-bliss-500 data-[state=active]:text-white py-3"
+            className="data-[state=active]:bg-bliss-500 data-[state=active]:text-white py-2"
           >
             Add New Expense
           </TabsTrigger>
@@ -202,9 +202,10 @@ const Expenses = () => {
             </CardHeader>
             <CardContent>
               <div className="rounded-md bg-white border shadow-[0_0_10px_rgba(0,0,0,.02)] border-bliss-200/80">
-                <div className="grid grid-cols-3 p-3 bg-muted/50 font-medium">
+                <div className="grid grid-cols-4 p-3 bg-muted/50 font-medium">
                   <div>Description</div>
                   <div>Category</div>
+                  <div>Date</div>
                   <div className="text-right">Amount</div>
                 </div>
                 <div className="divide-y">
@@ -212,10 +213,11 @@ const Expenses = () => {
                     filteredExpenses.map((expense) => (
                       <div
                         key={expense.id}
-                        className="grid grid-cols-3 p-3 items-center"
+                        className="grid grid-cols-4 p-3 items-center"
                       >
                         <div>{expense.description}</div>
                         <div className="capitalize">{expense.category}</div>
+                        <div className="capitalize">{expense.date}</div>
                         <div className="text-right font-medium">
                           {formatNaira(expense.amount)}
                         </div>
