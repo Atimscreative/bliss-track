@@ -1,28 +1,33 @@
 import { cn } from "@/lib/utils";
-import { BadgeCent, BedSingle, Home, Package2 } from "lucide-react";
+import {
+  DollarSign,
+  Home,
+  // LineChart,
+  Package,
+  ShoppingBag,
+} from "lucide-react";
 import { NavLink } from "react-router";
 
-export default function BottomNav() {
+export default function BottomNavMobile() {
   return (
-    <nav className=" p-4 fixed bottom-0 w-full left-0 h-20 bg-bg shadow-[0_4px_30px_rgba(0,0,0,0.2)]">
-      <div className="wrapper flex justify-between items-center gap-6">
-        {navmenu?.map((menu, index) => (
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 py-3 md:hidden z-10">
+      <div className="grid grid-cols-4 gap-1">
+        {navmenu.map((menu) => (
           <NavLink
-            key={index}
             to={menu.url}
             className={({ isActive }) =>
-              cn(
-                "flex flex-col items-center gap-1",
-                isActive ? "text-main" : "text-heading"
-              )
+              cn("flex flex-col items-center justify-center py-2", {
+                "text-bliss-600 font-medium": isActive,
+                "text-gray-500": !isActive,
+              })
             }
           >
-            <menu.icon />
-            <span className="text-sm font-medium">{menu?.label}</span>
+            <menu.icon className="h-5 w-5" />
+            <span className="text-sm mt-1">{menu.label}</span>
           </NavLink>
         ))}
       </div>
-    </nav>
+    </div>
   );
 }
 
@@ -30,27 +35,26 @@ const navmenu = [
   {
     icon: Home,
     label: "Home",
-    url: "/app",
+    url: "/",
   },
   {
-    icon: BedSingle,
-    label: "Stocks",
-    url: "/app/stocks",
-  },
-  {
-    icon: Package2,
+    icon: DollarSign,
     label: "Expenses",
-    url: "/app/expenses",
+    url: "/expenses",
   },
   {
-    icon: BadgeCent,
-    label: "Sales",
-    url: "/app/sales",
+    icon: Package,
+    label: "Inventory",
+    url: "/inventory",
   },
-
+  {
+    icon: ShoppingBag,
+    label: "Sales",
+    url: "/sales",
+  },
   // {
-  //   icon: Home,
-  //   label: "Settings",
-  //   url: "/app",
+  //   icon: LineChart,
+  //   label: "Reports",
+  //   url: "/analysis",
   // },
 ];
