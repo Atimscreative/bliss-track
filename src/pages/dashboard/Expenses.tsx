@@ -90,22 +90,24 @@ const Expenses = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Expense Tracking</h1>
+        <h1 className="text-2xl font-semibold  tracking-tight text-neutral-800">
+          Expense Tracking
+        </h1>
         <p className="text-muted-foreground">
           Manage and track your business expenses.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
+        <Card className="shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
           <CardHeader className="bg-bliss-blue/20 pb-2">
-            <CardTitle className="text-lg flex items-center">
+            <CardTitle className="text-lg flex text-neutral-800 items-center">
               <Package className="h-5 w-5 mr-2 text-blue-600" />
               Material Costs
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
-            <p className="text-xl font-bold">
+            <p className="text-xl font-semibold text-neutral-800">
               {formatNaira(totalMaterialCost)}
             </p>
             <p className="text-sm text-gray-500 mt-1">
@@ -114,30 +116,32 @@ const Expenses = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
           <CardHeader className="bg-bliss-lavender/20 pb-2">
-            <CardTitle className="text-lg flex items-center">
+            <CardTitle className="text-lg flex items-center text-neutral-800">
               <Truck className="h-5 w-5 mr-2 text-purple-600" />
               Other Costs
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
-            <p className="text-xl font-bold">{formatNaira(totalOtherCost)}</p>
+            <p className="text-xl font-semibold text-neutral-800">
+              {formatNaira(totalOtherCost)}
+            </p>
             <p className="text-sm text-gray-500 mt-1">
               Transport, thread, etc.
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
           <CardHeader className="bg-bliss-cream/30 pb-2">
-            <CardTitle className="text-lg flex items-center">
+            <CardTitle className="text-lg flex items-center text-neutral-800">
               <DollarSign className="h-5 w-5 mr-2 text-yellow-600" />
               Total Expenses
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
-            <p className="text-xl font-bold">
+            <p className="text-xl font-semibold text-neutral-800">
               {formatNaira(totalMaterialCost + totalOtherCost)}
             </p>
             <p className="text-sm text-gray-500 mt-1">All expenses combined</p>

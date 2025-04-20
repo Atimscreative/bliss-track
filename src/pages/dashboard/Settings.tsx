@@ -7,7 +7,9 @@ import { Settings2, Bell, User } from "lucide-react";
 const Settings = () => {
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Settings</h1>
+      <h1 className="text-2xl font-semibold  tracking-tight text-neutral-800">
+        Settings
+      </h1>
 
       <Card className="p-4">
         <div className="space-y-4">

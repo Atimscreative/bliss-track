@@ -6,7 +6,12 @@ import React, { useState, useEffect } from "react";
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<User | null>({
+    id: "1",
+    email: "admin@blisstrack.com",
+    name: "Oluwaseyi (Admin)",
+    role: "admin",
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

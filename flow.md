@@ -338,3 +338,23 @@ Nice for a grounded, balanced aesthetic:
 #c5a880 – Sand-like neutral
 
 #4d4d4d – Rich charcoal text
+
+
+
+
+Color Type | Hex Code | Description
+Complementary | #5ef062 | Fresh mint green
+Analogous 1 | #a762f0 | Light violet
+Analogous 2 | #626ef0 | Indigo blue
+Split-Complementary 1 | #62f08c | Soft seafoam green
+Split-Complementary 2 | #62f0c0 | Aqua teal
+Triadic | #f0628c | Pink-magenta
+
+
+Color Type | Hex Code | Description
+Complementary | #7ec1ec | Cool sky blue
+Analogous 1 | #ecda7e | Warm golden yellow
+Analogous 2 | #ec7e8c | Soft coral pink
+Split-Complementary 1 | `#7ebdec`` | Lighter denim blue
+Split-Complementary 2 | #7eecda | Minty aqua
+Triadic | #7eec9f | Fresh leaf green

@@ -19,6 +19,7 @@ import {
   Package,
   TrendingUp,
   AlertTriangle,
+  TrendingDown,
 } from "lucide-react";
 import {
   financialSummary,
@@ -46,13 +47,13 @@ const stockData = [
   { name: "6x6 Pillows", value: 5 },
 ];
 
-const COLORS = ["#E5DEFF", "#D3E4FD", "#FEF7CD", "#FDE1D3", "#F2FCE2"];
+const COLORS = ["#aa88fd", "#63a1f7", "#fcdd4d", "#f59f74", "#d0f4a2"];
 
 const Dashboard = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-neutral-800">
+        <h1 className="text-2xl font-semibold  tracking-tight text-neutral-800">
           Dashboard
         </h1>
         <p className="text-neutral-500">Overview of your bedding business.</p>
@@ -64,40 +65,35 @@ const Dashboard = () => {
           title="Total Sales"
           value={formatNaira(financialSummary.totalSales)}
           icon={ShoppingBag}
-          iconClassName="bg-primary"
-          className="bg-white"
         />
         <MetricCard
           title="Total Expenses"
           value={formatNaira(financialSummary.totalExpenses)}
           icon={DollarSign}
-          iconClassName="bg-accent"
-          className="bg-white"
         />
         <MetricCard
           title="Current Stock"
           value={`${financialSummary.totalStock} Items`}
           icon={Package}
-          iconClassName="bg-secondary"
-          className="bg-white"
         />
         <MetricCard
           title="Profit/Loss"
           value={formatNaira(financialSummary.profit)}
-          icon={TrendingUp}
+          icon={financialSummary.profit >= 0 ? TrendingUp : TrendingDown}
           iconClassName={
             financialSummary.profit >= 0 ? "bg-green-500" : "bg-red-500"
           }
-          className="bg-white"
         />
       </div>
 
       {/* Charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Sales Chart */}
-        <Card>
+        <Card className="shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
           <CardHeader>
-            <CardTitle className="text-lg">Monthly Sales</CardTitle>
+            <CardTitle className="text-lg text-neutral-800">
+              Monthly Sales
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-[300px]">
@@ -127,9 +123,11 @@ const Dashboard = () => {
         </Card>
 
         {/* Stock Distribution */}
-        <Card>
+        <Card className="shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
           <CardHeader>
-            <CardTitle className="text-lg">Stock Distribution</CardTitle>
+            <CardTitle className="text-lg text-neutral-800">
+              Stock Distribution
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-[300px]">

@@ -59,7 +59,7 @@ export default function DashboardSidebar() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 pb-16 md:pb-4 px-4 md:px-8 py-6 max-w-5xl mx-auto w-full">
+      <main className="flex-1 pb-16 md:pb-4 px-4 md:px-8 py-6 w-full mx-auto">
         <Outlet />
       </main>
     </div>

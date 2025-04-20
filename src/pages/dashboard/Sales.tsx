@@ -25,7 +25,9 @@ const Sales = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Sales</h1>
+        <h1 className="text-2xl font-semibold  tracking-tight text-neutral-800">
+          Sales
+        </h1>
         <Button>
           <PlusCircle className="h-4 w-4 mr-2" />
           New Sale

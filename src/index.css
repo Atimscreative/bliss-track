@@ -156,6 +156,18 @@
   --color-bliss-900: oklch(0.38 0.1676 294.37);
   --color-bliss-950: oklch(0.28 0.1283 291.55);
   --color-main: oklch(0.77 0.103 43.97);
+
+  --color-main-50: #fdf4ef;
+  --color-main-100: #fae5da;
+  --color-main-200: #f4c8b4;
+  --color-main-300: #ec9f7e;
+  --color-main-400: #e57552;
+  --color-main-500: #de5431;
+  --color-main-600: #d03c26;
+  --color-main-700: #ad2c21;
+  --color-main-800: #8a2622;
+  --color-main-900: #70221e;
+  --color-main-950: #3c0e0e;
 }
 
 @layer base {

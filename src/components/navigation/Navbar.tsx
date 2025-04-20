@@ -16,6 +16,7 @@ import {
   PlusCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "../widgets/ModeToggle";
 
 export default function Navbar() {
   const { currentUser, logout } = useAuth();
@@ -92,6 +93,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center space-x-2">
+          <ModeToggle />
           <span className="hidden md:inline text-sm font-medium text-gray-600">
             {currentUser.name}
           </span>
