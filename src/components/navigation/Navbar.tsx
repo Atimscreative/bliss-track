@@ -32,7 +32,7 @@ export default function Navbar() {
     navigate("/login");
   };
   return (
-    <header className="bg-white border-b shadow-sm sticky top-0 z-10">
+    <header className="bg-white border-b border-neutral-200 shadow-sm sticky top-0 z-10">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Sheet open={open} onOpenChange={setOpen}>

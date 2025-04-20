@@ -60,7 +60,7 @@ const Dashboard = () => {
       </div>
 
       {/* Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 min-[500px]:grid-cols-2 xl:grid-cols-4 gap-4">
         <MetricCard
           title="Total Sales"
           value={formatNaira(financialSummary.totalSales)}
@@ -87,7 +87,7 @@ const Dashboard = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sales Chart */}
         <Card className="shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
           <CardHeader>

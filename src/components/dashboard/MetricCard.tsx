@@ -62,12 +62,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
           <div
             className={cn("p-3 rounded-full", iconClassName || "bg-bliss-600")}
           >
-            <Icon
-              className={cn(
-                "h-6 w-6",
-                iconClassName ? "text-white" : "text-primary"
-              )}
-            />
+            <Icon className={cn("h-6 w-6 text-white", iconClassName)} />
           </div>
         </div>
       </CardContent>

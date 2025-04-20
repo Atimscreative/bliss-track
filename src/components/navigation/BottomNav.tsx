@@ -10,10 +10,11 @@ import { NavLink } from "react-router";
 
 export default function BottomNavMobile() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 py-3 md:hidden z-10">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 py-3 lg:hidden z-10">
       <div className="grid grid-cols-4 gap-1">
         {navmenu.map((menu) => (
           <NavLink
+            key={menu.label}
             to={menu.url}
             className={({ isActive }) =>
               cn("flex flex-col items-center justify-center py-2", {

@@ -98,7 +98,7 @@ const Expenses = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card className="shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
           <CardHeader className="bg-bliss-blue/20 pb-2">
             <CardTitle className="text-lg flex text-neutral-800 items-center">
@@ -150,15 +150,25 @@ const Expenses = () => {
       </div>
 
       <Tabs defaultValue="view">
-        <TabsList className="grid grid-cols-2 mb-4">
-          <TabsTrigger value="view">View Expenses</TabsTrigger>
-          <TabsTrigger value="add">Add New Expense</TabsTrigger>
+        <TabsList className="grid sm:max-w-sm grid-cols-2 w-full mb-4 h-max p-1 bg-bliss-100">
+          <TabsTrigger
+            value="view"
+            className="data-[state=active]:bg-bliss-500 data-[state=active]:text-white py-3"
+          >
+            View Expenses
+          </TabsTrigger>
+          <TabsTrigger
+            value="add"
+            className="data-[state=active]:bg-bliss-500 data-[state=active]:text-white py-3"
+          >
+            Add New Expense
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="view">
-          <Card>
+          <Card className="bg-white border shadow-[0_0_10px_rgba(0,0,0,.02)] border-bliss-200/80">
             <CardHeader>
-              <CardTitle>Expense History</CardTitle>
+              <CardTitle className="text-lg">Expense History</CardTitle>
               <CardDescription>
                 View and filter your past expenses
               </CardDescription>
@@ -168,7 +178,7 @@ const Expenses = () => {
                   <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
                     placeholder="Search expenses..."
-                    className="pl-9"
+                    className="pl-9 focus-visible:ring-bliss-500 focus-visible:ring-2 focus-visible:border-0"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
@@ -177,7 +187,7 @@ const Expenses = () => {
                   value={selectedCategory}
                   onValueChange={setSelectedCategory}
                 >
-                  <SelectTrigger className="w-full sm:w-[200px]">
+                  <SelectTrigger className="w-full focus:border-2 focus:border-bliss-500 sm:w-[200px]">
                     <SelectValue placeholder="Filter by category" />
                   </SelectTrigger>
                   <SelectContent>
@@ -191,7 +201,7 @@ const Expenses = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="rounded-md border">
+              <div className="rounded-md bg-white border shadow-[0_0_10px_rgba(0,0,0,.02)] border-bliss-200/80">
                 <div className="grid grid-cols-3 p-3 bg-muted/50 font-medium">
                   <div>Description</div>
                   <div>Category</div>
@@ -225,7 +235,7 @@ const Expenses = () => {
         <TabsContent value="add">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Material Expense Form */}
-            <Card>
+            <Card className="bg-white border shadow-[0_0_10px_rgba(0,0,0,.02)] border-bliss-200/80">
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Package className="h-5 w-5 mr-2" />
@@ -243,7 +253,7 @@ const Expenses = () => {
                       value={materialType}
                       onValueChange={setMaterialType}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select material type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -263,6 +273,7 @@ const Expenses = () => {
                       id="material-name"
                       placeholder="e.g., Premium Cotton"
                       value={materialName}
+                      className="placeholder:text-sm"
                       onChange={(e) => setMaterialName(e.target.value)}
                       required
                     />
@@ -286,7 +297,7 @@ const Expenses = () => {
                         value={materialUnit}
                         onValueChange={setMaterialUnit}
                       >
-                        <SelectTrigger id="unit">
+                        <SelectTrigger id="unit" className="w-full">
                           <SelectValue placeholder="Select unit" />
                         </SelectTrigger>
                         <SelectContent>
@@ -311,7 +322,10 @@ const Expenses = () => {
                   </div>
 
                   <div className="pt-2">
-                    <Button type="submit" className="w-full">
+                    <Button
+                      type="submit"
+                      className="w-full bg-bliss-500 h-auto py-3 hover:bg-bliss-400"
+                    >
                       <Plus className="mr-2 h-4 w-4" />
                       Add Material Expense
                     </Button>
@@ -321,7 +335,7 @@ const Expenses = () => {
             </Card>
 
             {/* Other Expense Form */}
-            <Card>
+            <Card className="bg-white border shadow-[0_0_10px_rgba(0,0,0,.02)] border-bliss-200/80">
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <FileText className="h-5 w-5 mr-2" />
@@ -339,7 +353,7 @@ const Expenses = () => {
                       value={expenseCategory}
                       onValueChange={setExpenseCategory}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select category" />
                       </SelectTrigger>
                       <SelectContent>
@@ -384,7 +398,10 @@ const Expenses = () => {
                   </div>
 
                   <div className="pt-2">
-                    <Button type="submit" className="w-full">
+                    <Button
+                      type="submit"
+                      className="w-full bg-bliss-500 h-auto py-3 hover:bg-bliss-400"
+                    >
                       <Plus className="mr-2 h-4 w-4" />
                       Add Expense
                     </Button>

@@ -176,7 +176,7 @@
   }
 
   body {
-    @apply antialiased font-poppins;
+    @apply antialiased font-poppins selection:bg-bliss-500 selection:text-white;
   }
 
   h1,
