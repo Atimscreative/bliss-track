@@ -14,8 +14,8 @@ import { Plus, Search, Pen, Trash, Check, FileText } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { formatNaira } from "@/services/mockData";
-import ProductDialog from "@/components/widgets/ProductDialog";
-import DeleteProductDialog from "@/components/widgets/DeleteDialog";
+import ProductDialog from "@/components/widgets/Dialogs/ProductDialog";
+import DeleteProductDialog from "@/components/widgets/Dialogs/DeleteDialog";
 
 // Mock data - in a real app this would come from your backend
 const initialProducts: Product[] = [

@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { formatNaira } from "@/services/mockData";
 import { sales } from "@/services/mockData";
 import { Sale } from "@/types";
-import InvoiceDialog from "@/components/widgets/InvoiceDialog";
+import InvoiceDialog from "@/components/widgets/Dialogs/InvoiceDialog";
 // import { useToast } from "@/components/ui/use-toast";
 import {
   Select,

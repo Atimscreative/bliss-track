@@ -11,7 +11,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { BillingAddress } from "@/types";
-import AddressForm from "@/components/widgets/AddressForm";
+import AddressForm from "@/components/widgets/forms/AddressForm";
 // import { useToast } from "@/hooks/use-toast";
 import { Edit, Trash, Plus, MapPin } from "lucide-react";
 

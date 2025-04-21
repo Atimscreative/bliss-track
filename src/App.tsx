@@ -1,7 +1,6 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router";
 import Dashboard from "./pages/dashboard/Dashboard";
 import NotFound from "./pages/NotFound";
-import { useAuth } from "./hooks/useAuth";
 import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/authentication/Login";
 import Expenses from "./pages/dashboard/Expenses";
@@ -16,46 +15,37 @@ import Cart from "./pages/user/Cart";
 import Checkout from "./pages/user/Checkout";
 import Orders from "./pages/user/Orders";
 import CustomerProfile from "./pages/user/CustomerProfile";
-
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { currentUser } = useAuth();
-
-  if (!currentUser) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return <>{children}</>;
-};
-
-// const AdminRoute = ({ children }: { children: React.ReactNode }) => {
-//   const { currentUser } = useAuth();
-
-//   if (!currentUser || currentUser.role !== "admin") {
-//     return <Navigate to="/" replace />;
-//   }
-
-//   return <>{children}</>;
-// };
+import AdminProtectedRoute from "./pages/protected-routes/AdminProtectedRoutes";
+import ProtectedRoute from "./pages/protected-routes/CustomerProtectedRoutes";
+import AppLayout from "./layouts/AppLayout";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
-
           {/* Customer-facing Routes */}
           <Route path="/shop" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/my-profile" element={<CustomerProfile />} />
-
+          <Route path="/login" element={<Login />} />
           <Route
             element={
               <ProtectedRoute>
-                <MainLayout />
+                <AppLayout />
               </ProtectedRoute>
+            }
+          >
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/my-profile" element={<CustomerProfile />} />
+          </Route>
+
+          {/* ADMIN  */}
+          <Route
+            element={
+              <AdminProtectedRoute>
+                <MainLayout />
+              </AdminProtectedRoute>
             }
           >
             <Route path="/" element={<Dashboard />} />

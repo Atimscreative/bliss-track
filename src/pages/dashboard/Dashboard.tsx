@@ -1,4 +1,4 @@
-import MetricCard from "@/components/dashboard/MetricCard";
+import MetricCard from "@/components/widgets/cards/MetricCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   BarChart,

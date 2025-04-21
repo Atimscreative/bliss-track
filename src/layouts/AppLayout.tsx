@@ -1,4 +1,4 @@
-import BottomNav from "@/components/navigation/BottomNav";
+import BottomNav from "@/components/widgets/navigation/BottomNav";
 import { Outlet } from "react-router";
 
 export default function AppLayout() {

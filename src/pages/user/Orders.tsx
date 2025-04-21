@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { formatNaira } from "@/services/mockData";
-import InvoiceDialog from "@/components/widgets/InvoiceDialog";
+import InvoiceDialog from "@/components/widgets/Dialogs/InvoiceDialog";
 import { sale1, sale2, sale3 } from "@/services/mockOrderData";
 import { Sale } from "@/types";
 
