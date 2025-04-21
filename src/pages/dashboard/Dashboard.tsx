@@ -115,7 +115,12 @@ const Dashboard = () => {
                     labelFormatter={(label) => `Month: ${label}`}
                   />
                   <Legend />
-                  <Bar dataKey="amount" name="Sales" fill="#E5DEFF" />
+                  <Bar
+                    dataKey="amount"
+                    name="Sales"
+                    className="fill-bliss-500"
+                    fill="#8c62f0"
+                  />
                 </BarChart>
               </ResponsiveContainer>
             </div>

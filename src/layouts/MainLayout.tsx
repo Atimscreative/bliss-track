@@ -13,7 +13,7 @@ const MainLayout: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen">
       {/* Top Navigation  */}
       <Navbar />
 

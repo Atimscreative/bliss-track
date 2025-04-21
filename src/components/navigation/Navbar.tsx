@@ -32,8 +32,8 @@ export default function Navbar() {
     navigate("/login");
   };
   return (
-    <header className="bg-white border-b border-neutral-200 shadow-sm sticky top-0 z-10">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    <header className="bg-white border-b border-neutral-200 shadow-sm sticky top-0 z-10 dark:bg-neutral-900 dark:border-neutral-800">
+      <div className="w-full px-8 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
@@ -45,7 +45,10 @@ export default function Navbar() {
                 <Menu className="h-[20px_!important] w-[20px_!important] grow" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[240px] bg-gray-50 p-0">
+            <SheetContent
+              side="left"
+              className="w-[340px] bg-gray-50 p-0 dark:bg-neutral-900"
+            >
               <div className="py-6 px-4">
                 <div className="flex items-center justify-between mb-6">
                   <span className="font-bold text-xl text-bliss-500">
@@ -62,8 +65,8 @@ export default function Navbar() {
                         cn(
                           "flex items-center px-3 py-3 rounded-md text-sm transition-colors",
                           {
-                            "bg-bliss-500 text-white font-medium": isActive,
-                            "text-gray-700 hover:bg-bliss-50 hover:text-bliss-500":
+                            "bg-bliss-500 text-white": isActive,
+                            "text-gray-700 hover:text-bliss-500 dark:text-neutral-300 hover:bg-bliss-50 dark:hover:bg-neutral-800 dark:hover:text-bliss-500":
                               !isActive,
                           }
                         )

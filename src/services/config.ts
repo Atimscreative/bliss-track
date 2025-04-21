@@ -6,6 +6,7 @@ const appwriteConfig = {
   INVENTORY_COLLECTION: import.meta.env.VITE_APPWRITE_INVENTORY_COLLECTION,
   SALES_COLLECTION: import.meta.env.VITE_APPWRITE_SALES_COLLECTION,
   EXPENSES_COLLECTION: import.meta.env.VITE_APPWRITE_EXPENSES_COLLECTION,
+  STORAGE_ID: import.meta.env.VITE_APPWRITE_STORAGE_ID,
 };
 
 export { appwriteConfig };
