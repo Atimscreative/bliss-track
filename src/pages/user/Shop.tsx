@@ -55,9 +55,18 @@ const Shop = () => {
 
   return (
     <section className="wrapper py-10">
+      <div className="rounded-2xl mb-8 p-6 bg-gradient-to-br from-bliss-800 to-bliss-600">
+        <h1 className="text-white text-2xl mb-2 font-semibold">
+          Experience Luxury in Every Sleep
+        </h1>
+        <p className="text-bliss-100">
+          Discover our premium collection of bedsheets crafted for your perfect
+          night's sleep.
+        </p>
+      </div>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl sm:text-2xl font-semibold">All products</h1>
+          <h2 className="text-xl sm:text-2xl font-semibold">All products</h2>
           <div className="flex items-center space-x-2">
             {/* <Button
               variant={filter === "all" ? "default" : "outline"}
