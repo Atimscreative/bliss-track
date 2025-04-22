@@ -18,6 +18,7 @@ import CustomerProfile from "./pages/user/CustomerProfile";
 import AdminProtectedRoute from "./pages/protected-routes/AdminProtectedRoutes";
 import ProtectedRoute from "./pages/protected-routes/CustomerProtectedRoutes";
 import AppLayout from "./layouts/AppLayout";
+import Index from "./pages/dashboard/Index";
 
 function App() {
   return (
@@ -25,9 +26,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Customer-facing Routes */}
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
+          <Route element={<AppLayout />}>
+            <Route index element={<Index />} />
+            <Route path="shop" element={<Shop />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="login" element={<Login />} />
+          </Route>
           <Route
             element={
               <ProtectedRoute>
@@ -35,27 +39,28 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/my-profile" element={<CustomerProfile />} />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="my-profile" element={<CustomerProfile />} />
           </Route>
 
           {/* ADMIN  */}
           <Route
+            path="admin"
             element={
               <AdminProtectedRoute>
                 <MainLayout />
               </AdminProtectedRoute>
             }
           >
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/expenses" element={<Expenses />} />
-            <Route path="/inventory" element={<Inventory />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/sales" element={<Sales />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/analysis" element={<Analysis />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route index element={<Dashboard />} />
+            <Route path="expenses" element={<Expenses />} />
+            <Route path="inventory" element={<Inventory />} />
+            <Route path="pricing" element={<Pricing />} />
+            <Route path="sales" element={<Sales />} />
+            <Route path="products" element={<Products />} />
+            <Route path="analysis" element={<Analysis />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
