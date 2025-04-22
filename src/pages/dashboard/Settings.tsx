@@ -1,14 +1,14 @@
-import { Card } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Settings2, Bell, User } from "lucide-react";
+// import { Card } from "@/components/ui/card";
+// // import { Button } from "@/components/ui/button";
+// import { Label } from "@/components/ui/label";
+// import { Input } from "@/components/ui/input";
+// import { Settings2, Bell, User } from "lucide-react";
 import ProfilePage from "./Profile";
 
 const Settings = () => {
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold  tracking-tight text-neutral-800">
+      {/* <h1 className="text-2xl font-semibold  tracking-tight text-neutral-800">
         Settings
       </h1>
 
@@ -85,7 +85,7 @@ const Settings = () => {
             </div>
           </div>
         </div>
-      </Card>
+      </Card> */}
 
       <div></div>
 

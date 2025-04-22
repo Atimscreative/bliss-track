@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
-import BottomNavMobile from "@/components/widgets/navigation/BottomNav";
-import DashboardSidebar from "@/components/widgets/navigation/DashboardSidebar";
-import Navbar from "@/components/widgets/navigation/Navbar";
+import BottomNavMobile from "@/components/widgets/navigation/dashboard/BottomNav";
+import DashboardSidebar from "@/components/widgets/navigation/dashboard/DashboardSidebar";
+import Navbar from "@/components/widgets/navigation/dashboard/Navbar";
 
 const MainLayout: React.FC = () => {
   const { currentUser } = useAuth();

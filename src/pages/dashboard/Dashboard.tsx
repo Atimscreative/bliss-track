@@ -1,5 +1,11 @@
 import MetricCard from "@/components/widgets/cards/MetricCard";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   BarChart,
   PieChart,
@@ -49,6 +55,45 @@ const stockData = [
 
 const COLORS = ["#aa88fd", "#63a1f7", "#fcdd4d", "#f59f74", "#d0f4a2"];
 
+const chartData = [
+  {
+    name: "Jan",
+    sales: 45000,
+    expenses: 30000,
+    profit: 15000,
+  },
+  {
+    name: "Feb",
+    sales: 52000,
+    expenses: 32000,
+    profit: 20000,
+  },
+  {
+    name: "Mar",
+    sales: 48000,
+    expenses: 28000,
+    profit: 20000,
+  },
+  {
+    name: "Apr",
+    sales: 70000,
+    expenses: 42000,
+    profit: 28000,
+  },
+  {
+    name: "May",
+    sales: 95000,
+    expenses: 55000,
+    profit: 40000,
+  },
+  {
+    name: "Jun",
+    sales: 125000,
+    expenses: 75000,
+    profit: 50000,
+  },
+];
+
 const Dashboard = () => {
   return (
     <div className="space-y-6">
@@ -85,6 +130,54 @@ const Dashboard = () => {
           }
         />
       </div>
+      {/* Chart */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Financial Overview</CardTitle>
+          <CardDescription>
+            View your business performance over time
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip
+                  formatter={(value) => `₦${value}`}
+                  labelStyle={{ color: "#333" }}
+                  contentStyle={{
+                    backgroundColor: "white",
+                    border: "1px solid #ddd",
+                    borderRadius: "8px",
+                  }}
+                />
+                <Legend />
+                <Bar
+                  dataKey="sales"
+                  name="Sales"
+                  fill="#9b87f5"
+                  radius={[4, 4, 0, 0]}
+                />
+                <Bar
+                  dataKey="expenses"
+                  name="Expenses"
+                  fill="#FDA4AF"
+                  radius={[4, 4, 0, 0]}
+                />
+                <Bar
+                  dataKey="profit"
+                  name="Profit"
+                  fill="#86EFAC"
+                  radius={[4, 4, 0, 0]}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

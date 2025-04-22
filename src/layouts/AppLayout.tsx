@@ -1,13 +1,13 @@
-import BottomNav from "@/components/widgets/navigation/BottomNav";
+import Header from "@/components/widgets/navigation/users/Header";
 import { Outlet } from "react-router";
 
 export default function AppLayout() {
   return (
     <>
-      <div className="pb-28">
+      <Header />
+      <div className="">
         <Outlet />
       </div>
-      <BottomNav />
     </>
   );
 }
