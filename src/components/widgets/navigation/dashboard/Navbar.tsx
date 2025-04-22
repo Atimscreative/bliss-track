@@ -16,7 +16,7 @@ import {
   PlusCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "../ModeToggle";
+import { ModeToggle } from "../../ModeToggle";
 
 export default function Navbar() {
   const { currentUser, logout } = useAuth();
