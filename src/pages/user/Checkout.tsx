@@ -19,6 +19,8 @@ import {
 import { useCart } from "@/hooks/useCart";
 import { formatNaira } from "@/services/mockData";
 import { useAuth } from "@/hooks/useAuth";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 
 // Form schema
 const formSchema = z.object({
@@ -34,6 +36,7 @@ type CheckoutFormValues = z.infer<typeof formSchema>;
 
 const Checkout = () => {
   const { items, totalPrice, clearCart } = useCart();
+  const [isPostPurchaseAcc, setIsPostPurchaseAcc] = useState<boolean>(false);
   // const { toast } = useToast();
   const navigate = useNavigate();
   const { currentUser } = useAuth();
@@ -129,7 +132,7 @@ const Checkout = () => {
 
         <div className="grid md:grid-cols-3 gap-6">
           <div className="md:col-span-2 space-y-6">
-            <Card className="p-6">
+            <Card className="p-6 bg-white border shadow-[0_0_10px_rgba(0,0,0,.02)] border-bliss-200/80">
               <h2 className="text-lg font-semibold mb-4">
                 Shipping Information
               </h2>
@@ -230,22 +233,40 @@ const Checkout = () => {
                     />
                   </div>
 
+                  <div className="inline-flex gap-2 mt-3">
+                    <Switch
+                      id="create-account-checkbox"
+                      checked={isPostPurchaseAcc}
+                      className="data-[state=checked]:bg-bliss-500"
+                      onCheckedChange={(checked) =>
+                        setIsPostPurchaseAcc(checked)
+                      }
+                    />
+                    <Label>Create an account after checkout</Label>
+                  </div>
+
                   <div className="pt-4">
                     <Button
                       type="submit"
-                      className="w-full"
+                      className="w-full py-3 h-auto bg-bliss-500 text-white hover:bg-bliss-600"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? "Processing..." : "Place Order"}
+                      {isSubmitting
+                        ? "Processing..."
+                        : `Place Order ${isPostPurchaseAcc ? "" : "as guest"}`}
                     </Button>
                   </div>
+                  <p className="text-neutral-700 mt-3 text-center text-sm">
+                    No need to create an account. Checkout quickly and securely
+                    as a guest!
+                  </p>
                 </form>
               </Form>
             </Card>
           </div>
 
           <div>
-            <Card className="p-6">
+            <Card className="p-6 bg-white border shadow-[0_0_10px_rgba(0,0,0,.02)] border-bliss-200/80">
               <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
 
               <div className="space-y-3">
