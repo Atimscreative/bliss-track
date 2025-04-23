@@ -14,11 +14,16 @@ import { useCart } from "@/hooks/useCart";
 import { formatNaira } from "@/services/mockData";
 import { stock } from "@/services/mockData";
 import { cn } from "@/lib/utils";
+import { removeFromCart } from "@/redux/features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const Cart = () => {
-  const { items, removeFromCart, updateQuantity, totalItems, totalPrice } =
-    useCart();
+  const { items, updateQuantity, totalItems, totalPrice } = useCart();
+  const cart = useSelector((state: RootState) => state.cart.cart);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleQuantityChange = (id: string, quantity: number) => {
     const product = stock.find((item) => item.id === id);
@@ -49,7 +54,7 @@ const Cart = () => {
           )}
         </div>
 
-        {items.length === 0 ? (
+        {cart.length === 0 ? (
           <div className="text-center py-12">
             <ShoppingBag className="mx-auto h-12 w-12 text-muted-foreground" />
             <h2 className="mt-4 text-lg font-medium">Your cart is empty</h2>
@@ -66,7 +71,7 @@ const Cart = () => {
         ) : (
           <>
             <div className="space-y-4">
-              {items.map((item) => (
+              {cart.map((item) => (
                 <Card
                   key={item.id}
                   className="p-3 relative bg-white border shadow-[0_3px_10px_rgba(0,0,0,.06)] border-bliss-200/30"
@@ -77,7 +82,9 @@ const Cart = () => {
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() =>
+                          dispatch(removeFromCart({ id: item.id }))
+                        }
                         className="absolute size-auto top-4 right-4"
                       >
                         <Trash className="size-3.5 sm:size-4 text-destructive" />

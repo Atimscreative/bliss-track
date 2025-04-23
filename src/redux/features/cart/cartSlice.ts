@@ -1,5 +1,5 @@
 import { BedSize } from "@/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { toast } from "sonner";
 // import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -35,7 +35,7 @@ const cartSlice = createSlice({
         toast.success(`${newItem.name} added to cart `);
       }
     },
-    removeFromCart: (state, action) => {
+    removeFromCart: (state, action: PayloadAction<{ id: string }>) => {
       const itemIndex = state.cart.findIndex(
         (item) => item.id === action.payload.id
       );
@@ -58,6 +58,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

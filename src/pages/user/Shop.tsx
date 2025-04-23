@@ -7,7 +7,6 @@ import { ShoppingBag, Package } from "lucide-react";
 import { stock } from "@/services/mockData";
 import { prices, formatNaira } from "@/services/mockData";
 import { BedSize } from "@/types";
-import { useCart } from "@/hooks/useCart";
 
 import {
   Select,
@@ -17,10 +16,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { addToCart } from "@/redux/features/cart/cartSlice";
 
 const Shop = () => {
-  // const { toast } = useToast();
-  const { addToCart } = useCart();
+  const cart = useSelector((state: RootState) => state.cart.cart);
+  const dispatch = useDispatch();
   const [filter, setFilter] = useState<string>("all");
 
   // Filter products that are bedsheets with stock
@@ -38,20 +40,19 @@ const Shop = () => {
     const priceInfo = prices.find((p) => p.size === size);
 
     if (product && priceInfo) {
-      addToCart({
-        id: productId,
-        name,
-        size,
-        price: priceInfo.price,
-        quantity: 1,
-      });
-
-      // toast({
-      //   title: "Added to cart",
-      //   description: `${name} has been added to your cart.`,
-      // });
+      dispatch(
+        addToCart({
+          id: productId,
+          name,
+          size,
+          price: priceInfo.price,
+          quantity: 1,
+        })
+      );
     }
   };
+
+  console.log(cart, "RED");
 
   return (
     <section className="wrapper py-10">
