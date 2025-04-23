@@ -14,16 +14,18 @@ import { useCart } from "@/hooks/useCart";
 import { formatNaira } from "@/services/mockData";
 import { stock } from "@/services/mockData";
 import { cn } from "@/lib/utils";
-import { removeFromCart } from "@/redux/features/cart/cartSlice";
+import {
+  removeFromCart,
+  updateQuantity,
+} from "@/redux/features/cart/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
 const Cart = () => {
-  const { items, updateQuantity, totalItems, totalPrice } = useCart();
+  const { items, totalItems, totalPrice } = useCart();
   const cart = useSelector((state: RootState) => state.cart.cart);
-
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleQuantityChange = (id: string, quantity: number) => {
     const product = stock.find((item) => item.id === id);
@@ -33,7 +35,7 @@ const Cart = () => {
       quantity = maxQuantity;
     }
 
-    updateQuantity(id, quantity);
+    // updateQuantity(id, quantity);
   };
 
   return (
@@ -112,17 +114,29 @@ const Cart = () => {
                                 item.quantity <= 1 &&
                                   "bg-bliss-300 cursor-not-allowed"
                               )}
+                              onClick={() =>
+                                dispatch(
+                                  updateQuantity({
+                                    id: item.id,
+                                    quantity: -1,
+                                  })
+                                )
+                              }
                             >
                               <Minus className="size-4 text-white" />
                             </Button>
                             <Input
                               type="text"
                               min="1"
+                              pattern="\d*"
+                              inputMode="numeric"
                               value={item.quantity}
                               onChange={(e) =>
-                                handleQuantityChange(
-                                  item.id,
-                                  Number(e.target.value)
+                                dispatch(
+                                  updateQuantity({
+                                    id: item.id,
+                                    quantity: Number(e.target.value),
+                                  })
                                 )
                               }
                               className="text-center font-medium appearance-none rounded size-6 block w-6 text-xs p-0"
@@ -131,6 +145,14 @@ const Cart = () => {
                               variant="ghost"
                               size="icon"
                               className="bg-bliss-500 size-6 rounded"
+                              onClick={() =>
+                                dispatch(
+                                  updateQuantity({
+                                    id: item.id,
+                                    quantity: 1,
+                                  })
+                                )
+                              }
                             >
                               <Plus className="size-4 text-white" />
                             </Button>

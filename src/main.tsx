@@ -15,7 +15,12 @@ createRoot(document.getElementById("root")!).render(
       <Provider store={store}>
         <AuthProvider>
           <CartProvider>
-            <Toaster richColors theme="light" />
+            <Toaster
+              closeButton
+              richColors
+              theme="light"
+              position="top-right"
+            />
 
             <App />
           </CartProvider>

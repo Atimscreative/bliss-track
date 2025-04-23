@@ -53,11 +53,30 @@ const cartSlice = createSlice({
       );
       state.cart = updatedCart;
     },
-    // updateQuantity: (state) => {},
-    // clearCart: (state) => {},
+    updateQuantity: (
+      state,
+      action: PayloadAction<{ id: string; quantity: number }>
+    ) => {
+      const existingItem = state.cart.find(
+        (item) => item.id === action.payload.id
+      );
+      const quantity = action.payload.quantity;
+
+      if (existingItem) {
+        if (quantity > 1) {
+          existingItem.quantity += action.payload.quantity;
+        } else if (quantity > 1) {
+          existingItem.quantity -= 1;
+        }
+      }
+    },
+    clearCart: (state) => {
+      state.cart = [];
+      toast.info("All cart items cleared");
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions;
 
 export default cartSlice.reducer;
