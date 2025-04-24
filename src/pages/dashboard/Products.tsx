@@ -13,7 +13,8 @@ import { Product } from "@/types";
 import { Plus, Search, Pen, Trash, Check, FileText } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { formatNaira } from "@/services/mockData";
+import { formatNaira } from "@/utils/helper";
+
 import ProductDialog from "@/components/widgets/Dialogs/ProductDialog";
 import DeleteProductDialog from "@/components/widgets/Dialogs/DeleteDialog";
 

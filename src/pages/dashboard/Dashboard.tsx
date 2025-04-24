@@ -29,11 +29,12 @@ import {
 } from "lucide-react";
 import {
   financialSummary,
-  formatNaira,
   // sales,
   // expenses,
   stock,
 } from "@/services/mockData";
+
+import { formatNaira } from "@/utils/helper";
 
 const lowStockItems = stock.filter(
   (item) => item.quantity <= item.alertThreshold

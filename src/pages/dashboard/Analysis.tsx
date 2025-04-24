@@ -13,7 +13,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Download, FileBarChart, TrendingUp } from "lucide-react";
-import { formatNaira } from "@/services/mockData";
+import { formatNaira } from "@/utils/helper";
 
 // Generate monthly data
 const monthlyData = [

@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App.tsx";
 import { ThemeProvider } from "./context/ThemeContext.tsx";
 import { AuthProvider } from "./context/AuthContext.tsx";
-import { CartProvider } from "./context/CartContext.tsx";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
 import { Toaster } from "./components/ui/sonner.tsx";
@@ -14,16 +13,8 @@ createRoot(document.getElementById("root")!).render(
     <ThemeProvider defaultTheme="dark" storageKey="theme">
       <Provider store={store}>
         <AuthProvider>
-          <CartProvider>
-            <Toaster
-              closeButton
-              richColors
-              theme="light"
-              position="top-right"
-            />
-
-            <App />
-          </CartProvider>
+          <Toaster closeButton richColors theme="light" position="top-right" />
+          <App />
         </AuthProvider>
       </Provider>
     </ThemeProvider>

@@ -70,37 +70,37 @@ export default function DashboardSidebar() {
 const navItems = [
   {
     name: "Dashboard",
-    path: "/",
+    path: "/admin",
     icon: <Home className="h-5 w-5 mr-3" />,
   },
   {
     name: "Expenses",
-    path: "/expenses",
+    path: "/admin/expenses",
     icon: <DollarSign className="h-5 w-5 mr-3" />,
   },
   {
     name: "Inventory",
-    path: "/inventory",
+    path: "/admin/inventory",
     icon: <Package className="h-5 w-5 mr-3" />,
   },
   {
     name: "Pricing",
-    path: "/pricing",
+    path: "/admin/pricing",
     icon: <PlusCircle className="h-5 w-5 mr-3" />,
   },
   {
     name: "Sales",
-    path: "/sales",
+    path: "/admin/sales",
     icon: <ShoppingBag className="h-5 w-5 mr-3" />,
   },
   {
     name: "Analysis",
-    path: "/analysis",
+    path: "/admin/analysis",
     icon: <LineChart className="h-5 w-5 mr-3" />,
   },
   {
     name: "Settings",
-    path: "/settings",
+    path: "/admin/settings",
     icon: <Settings className="h-5 w-5 mr-3" />,
   },
 ];

@@ -16,11 +16,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useCart } from "@/hooks/useCart";
-import { formatNaira } from "@/utils/helper";
+import { formatNaira, totalCartPrice } from "@/utils/helper";
 import { useAuth } from "@/hooks/useAuth";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { clearCart } from "@/redux/features/cart/cartSlice";
 
 // Form schema
 const formSchema = z.object({
@@ -35,7 +37,8 @@ const formSchema = z.object({
 type CheckoutFormValues = z.infer<typeof formSchema>;
 
 const Checkout = () => {
-  const { items, totalPrice, clearCart } = useCart();
+  const { cart } = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
   const [isPostPurchaseAcc, setIsPostPurchaseAcc] = useState<boolean>(false);
   // const { toast } = useToast();
   const navigate = useNavigate();
@@ -95,7 +98,7 @@ const Checkout = () => {
       // };
 
       // Success! Clear cart and redirect
-      clearCart();
+      dispatch(clearCart());
 
       // toast({
       //   title: "Order placed successfully!",
@@ -118,7 +121,7 @@ const Checkout = () => {
     }
   };
 
-  if (items.length === 0) {
+  if (cart.length === 0) {
     navigate("/cart");
     return null;
   }
@@ -270,12 +273,12 @@ const Checkout = () => {
               <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
 
               <div className="space-y-3">
-                {items.map((item) => (
+                {cart.map((item: any) => (
                   <div key={item.id} className="flex justify-between">
                     <div>
                       <p className="font-medium">{item.name}</p>
                       <p className="text-sm text-muted-foreground">
-                        {item.size} × {item.quantity}
+                        {item.size} x {item.quantity}
                       </p>
                     </div>
                     <p className="font-medium">
@@ -290,7 +293,9 @@ const Checkout = () => {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <p>Subtotal</p>
-                  <p className="font-medium">{formatNaira(totalPrice)}</p>
+                  <p className="font-medium">
+                    {formatNaira(totalCartPrice(cart))}
+                  </p>
                 </div>
                 <div className="flex justify-between">
                   <p>Shipping</p>
@@ -298,7 +303,7 @@ const Checkout = () => {
                 </div>
                 <div className="flex justify-between text-lg font-semibold">
                   <p>Total</p>
-                  <p>{formatNaira(totalPrice)}</p>
+                  <p>{formatNaira(totalCartPrice(cart))}</p>
                 </div>
               </div>
             </Card>

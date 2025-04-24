@@ -18,18 +18,12 @@ import {
 } from "@/redux/features/cart/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { formatNaira } from "@/utils/helper";
+import { formatNaira, totalCartItems, totalCartPrice } from "@/utils/helper";
 
 const Cart = () => {
   const cart = useSelector((state: RootState) => state.cart.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const totalItems = cart.reduce((acc, cur) => acc + cur.quantity, 0);
-  const totalPrice = cart.reduce(
-    (acc, cur) => acc + cur.quantity * cur.price,
-    0
-  );
 
   return (
     <section className="py-10">
@@ -185,9 +179,11 @@ const Cart = () => {
             <div className="border-t pt-4 border-neutral-300">
               <div className="flex justify-between text-base font-medium">
                 <span className="text-neutral-500">
-                  Subtotal ({totalItems} items):
+                  Subtotal ({totalCartItems(cart)} items):
                 </span>
-                <span className="font-semibold">{formatNaira(totalPrice)}</span>
+                <span className="font-semibold">
+                  {formatNaira(totalCartPrice(cart))}
+                </span>
               </div>
 
               <Button

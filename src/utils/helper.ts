@@ -7,3 +7,11 @@ export const formatNaira = (amount: number): string => {
     maximumFractionDigits: 0,
   }).format(amount);
 };
+
+// To Get total cart Items
+export const totalCartItems = (items: any[]) =>
+  items.reduce((acc, cur) => acc + cur.quantity, 0);
+
+// Calculate Total cart price
+export const totalCartPrice = (items: any[]) =>
+  items.reduce((acc, cur) => acc + cur.quantity * cur.price, 0);

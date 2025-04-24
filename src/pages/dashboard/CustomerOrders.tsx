@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search, Check, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { formatNaira } from "@/services/mockData";
+import { formatNaira } from "@/utils/helper";
 import { sales } from "@/services/mockData";
 import { Sale } from "@/types";
 import InvoiceDialog from "@/components/widgets/Dialogs/InvoiceDialog";

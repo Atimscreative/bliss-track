@@ -8,7 +8,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
 import { Sale } from "@/types";
-import { formatNaira } from "@/services/mockData";
+import { formatNaira } from "@/utils/helper";
+
 
 interface InvoiceDialogProps {
   sale: Sale;

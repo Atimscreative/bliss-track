@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { PlusCircle } from "lucide-react";
 import { sales } from "@/services/mockData";
-import { formatNaira } from "@/services/mockData";
+import { formatNaira } from "@/utils/helper";
 import InvoiceDialog from "@/components/widgets/Dialogs/InvoiceDialog";
 
 const Sales = () => {

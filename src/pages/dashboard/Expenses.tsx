@@ -26,8 +26,9 @@ import {
   Truck,
   Scissors,
 } from "lucide-react";
-import { expenses, formatNaira, materials } from "@/services/mockData";
+import { expenses, materials } from "@/services/mockData";
 // import { Expense, Material } from "@/types";
+import { formatNaira } from "@/utils/helper";
 
 const Expenses = () => {
   const [searchTerm, setSearchTerm] = useState("");

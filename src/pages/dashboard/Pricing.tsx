@@ -6,7 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Tag } from "lucide-react";
 import { BedsheetPrice } from "@/types";
 import { prices } from "@/services/mockData";
-import { formatNaira } from "@/services/mockData";
+import { formatNaira } from "@/utils/helper";
+
 
 const Pricing = () => {
   const [currentPrices, setCurrentPrices] = useState<BedsheetPrice[]>(prices);
