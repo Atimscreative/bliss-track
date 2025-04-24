@@ -12,18 +12,43 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
+import { useForm } from "react-hook-form";
+import CustomInput from "@/components/widgets/forms/CustomInput";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+// Login Form Schema
+const loginSchema = z.object({
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters" }),
+});
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login, isLoading } = useAuth();
-  const navigate = useNavigate();
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const { isLoading } = useAuth();
+  // const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const {
+    handleSubmit,
+    register,
+    control,
+    // watch,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const onSubmit = async (data: any) => {
+    // e.preventDefault();
     try {
-      await login(email, password);
-      navigate("/admin");
+      // await login(email, password);
+      // navigate("/admin");
+      console.log(data);
+      reset();
     } catch (err) {
       // Error is already handled in the auth context
       console.log(err);
@@ -47,9 +72,17 @@ const Login = () => {
               Enter your credentials to access your account
             </CardDescription>
           </CardHeader>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <CardContent className="space-y-4">
-              <div className="space-y-2">
+              {adminLogin?.map((data, i) => {
+                return (
+                  <CustomInput
+                    key={i}
+                    {...{ data, register, control, errors }}
+                  />
+                );
+              })}
+              {/* <div className="space-y-2">
                 <Label htmlFor="email" className="text-neutral-600">
                   Email
                 </Label>
@@ -76,7 +109,7 @@ const Login = () => {
                   className="border border-neutral-300 h-10 focus-visible:ring-2 focus-visible:ring-bliss-500 focus-visible:border-0 text-neutral-600"
                   required
                 />
-              </div>
+              </div> */}
               {/* {error && (
                 <div className="bg-red-100 p-3 rounded-md text-red-700 text-sm">
                   {error}
@@ -106,3 +139,22 @@ const Login = () => {
 };
 
 export default Login;
+
+const adminLogin = [
+  {
+    type: "email",
+    name: "email",
+    label: "Email",
+    placeholder: "Enter your email",
+    required: true,
+    errorMessage: "Email is required",
+  },
+  {
+    type: "password",
+    name: "password",
+    label: "Password",
+    placeholder: "Your password",
+    required: true,
+    errorMessage: "Your password is required",
+  },
+];

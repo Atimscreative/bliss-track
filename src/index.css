@@ -192,3 +192,16 @@
     @apply max-w-7xl mx-auto px-4;
   }
 }
+
+
+@layer utilities {
+  input:-webkit-autofill {
+    @apply bg-red-400 text-black;
+  }
+}
+
+
+input:-webkit-autofill,
+input:-internal-autofill-selected {
+  background-color: white !important;
+}

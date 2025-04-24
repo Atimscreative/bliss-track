@@ -90,7 +90,7 @@ export function AuthForm() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto shadow-lg">
+    <Card className="w-full max-w-md duration-300 mx-auto shadow-[0_0_10px_rgba(0,0,0,.02)] bg-white border border-bliss-200/80">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">Welcome to BlissTrack</CardTitle>
         <CardDescription>
@@ -102,9 +102,19 @@ export function AuthForm() {
           value={activeTab}
           onValueChange={(value) => setActiveTab(value as "login" | "register")}
         >
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="login">Login</TabsTrigger>
-            <TabsTrigger value="register">Register</TabsTrigger>
+          <TabsList className="grid w-3/4 mx-auto grid-cols-2 h-auto p-1">
+            <TabsTrigger
+              value="login"
+              className="data-[state=active]:bg-bliss-500 py-2 data-[state=active]:text-white"
+            >
+              Login
+            </TabsTrigger>
+            <TabsTrigger
+              value="register"
+              className="data-[state=active]:bg-bliss-500 py-2 data-[state=active]:text-white"
+            >
+              Register
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="login" className="mt-4">
