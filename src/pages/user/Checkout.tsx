@@ -17,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useCart } from "@/hooks/useCart";
-import { formatNaira } from "@/services/mockData";
+import { formatNaira } from "@/utils/helper";
 import { useAuth } from "@/hooks/useAuth";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";

@@ -16,7 +16,7 @@ export interface CartState {
 }
 
 const initialState: CartState = {
-  cart: [],
+  cart: JSON.parse(localStorage.getItem("cart") as string) || [],
 };
 
 const cartSlice = createSlice({
@@ -34,7 +34,10 @@ const cartSlice = createSlice({
         state.cart.push(newItem);
         toast.success(`${newItem.name} added to cart `);
       }
+
+      localStorage.setItem("cart", JSON.stringify(state?.cart));
     },
+
     removeFromCart: (state, action: PayloadAction<{ id: string }>) => {
       const itemIndex = state.cart.findIndex(
         (item) => item.id === action.payload.id
@@ -52,7 +55,9 @@ const cartSlice = createSlice({
         (item) => item.id !== action.payload.id
       );
       state.cart = updatedCart;
+      localStorage.setItem("cart", JSON.stringify(state?.cart));
     },
+
     updateQuantity: (
       state,
       action: PayloadAction<{ id: string; quantity: number }>
@@ -60,19 +65,17 @@ const cartSlice = createSlice({
       const existingItem = state.cart.find(
         (item) => item.id === action.payload.id
       );
-      const quantity = action.payload.quantity;
 
       if (existingItem) {
-        if (quantity > 1) {
-          existingItem.quantity += action.payload.quantity;
-        } else if (quantity > 1) {
-          existingItem.quantity -= 1;
-        }
+        existingItem.quantity = Math.max(1, action.payload.quantity);
       }
+      localStorage.setItem("cart", JSON.stringify(state?.cart));
     },
+    
     clearCart: (state) => {
       state.cart = [];
       toast.info("All cart items cleared");
+      localStorage.setItem("cart", JSON.stringify(state?.cart));
     },
   },
 });

@@ -10,9 +10,7 @@ import {
   Minus,
   Plus,
 } from "lucide-react";
-import { useCart } from "@/hooks/useCart";
-import { formatNaira } from "@/services/mockData";
-import { stock } from "@/services/mockData";
+// import { stock } from "@/services/mockData";
 import { cn } from "@/lib/utils";
 import {
   removeFromCart,
@@ -20,30 +18,25 @@ import {
 } from "@/redux/features/cart/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { formatNaira } from "@/utils/helper";
 
 const Cart = () => {
-  const { items, totalItems, totalPrice } = useCart();
   const cart = useSelector((state: RootState) => state.cart.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleQuantityChange = (id: string, quantity: number) => {
-    const product = stock.find((item) => item.id === id);
-    const maxQuantity = product ? product.quantity : 10; // Default to 10 if product not found
-
-    if (quantity > maxQuantity) {
-      quantity = maxQuantity;
-    }
-
-    // updateQuantity(id, quantity);
-  };
+  const totalItems = cart.reduce((acc, cur) => acc + cur.quantity, 0);
+  const totalPrice = cart.reduce(
+    (acc, cur) => acc + cur.quantity * cur.price,
+    0
+  );
 
   return (
     <section className="py-10">
       <div className="wrapper space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Your Cart</h1>
-          {items.length > 0 && (
+          {cart.length > 0 && (
             <div>
               <Button
                 variant="outline"
@@ -109,16 +102,15 @@ const Cart = () => {
                             <Button
                               variant="ghost"
                               size="icon"
+                              disabled={item.quantity <= 1}
                               className={cn(
-                                "bg-bliss-500 size-6 rounded",
-                                item.quantity <= 1 &&
-                                  "bg-bliss-300 cursor-not-allowed"
+                                "bg-bliss-500 size-6 rounded hover:bg-bliss-600 disabled:bg-bliss-300 disabled:cursor-not-allowed"
                               )}
                               onClick={() =>
                                 dispatch(
                                   updateQuantity({
                                     id: item.id,
-                                    quantity: -1,
+                                    quantity: item.quantity - 1,
                                   })
                                 )
                               }
@@ -144,12 +136,12 @@ const Cart = () => {
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="bg-bliss-500 size-6 rounded"
+                              className="bg-bliss-500 size-6 rounded hover:bg-bliss-600"
                               onClick={() =>
                                 dispatch(
                                   updateQuantity({
                                     id: item.id,
-                                    quantity: 1,
+                                    quantity: item.quantity + 1,
                                   })
                                 )
                               }
@@ -201,7 +193,7 @@ const Cart = () => {
               <Button
                 className="w-full mt-4 bg-bliss-500 hover:bg-bliss-600 text-white h-auto py-3"
                 onClick={() => navigate("/checkout")}
-                disabled={items.length === 0}
+                disabled={cart.length === 0}
               >
                 Proceed to Checkout
                 <ArrowRight className="ml-2 h-4 w-4" />

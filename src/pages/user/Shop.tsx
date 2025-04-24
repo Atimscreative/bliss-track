@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 // import { Badge } from "@/components/ui/badge";
 import { ShoppingBag, Package } from "lucide-react";
 // import { useToast } from "@/components/ui/use-toast";
-import { stock } from "@/services/mockData";
-import { prices, formatNaira } from "@/services/mockData";
+import { prices, stock } from "@/services/mockData";
+import { formatNaira } from "@/utils/helper";
 import { BedSize } from "@/types";
 
 import {
