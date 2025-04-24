@@ -15,10 +15,10 @@ import Cart from "./pages/user/Cart";
 import Checkout from "./pages/user/Checkout";
 import Orders from "./pages/user/Orders";
 import CustomerProfile from "./pages/user/CustomerProfile";
-import AdminProtectedRoute from "./pages/protected-routes/AdminProtectedRoutes";
 import ProtectedRoute from "./pages/protected-routes/CustomerProtectedRoutes";
 import AppLayout from "./layouts/AppLayout";
 import Index from "./pages/dashboard/Index";
+import LoginPage from "./pages/authentication/Register";
 
 function App() {
   return (
@@ -45,14 +45,9 @@ function App() {
           </Route>
 
           {/* ADMIN  */}
-          <Route
-            path="admin"
-            element={
-              <AdminProtectedRoute>
-                <MainLayout />
-              </AdminProtectedRoute>
-            }
-          >
+          <Route path="admin-login" element={<LoginPage />} />
+
+          <Route path="admin" element={<MainLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="expenses" element={<Expenses />} />
             <Route path="inventory" element={<Inventory />} />

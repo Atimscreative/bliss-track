@@ -2,10 +2,10 @@ import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router";
 
 const AdminProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { currentUser } = useAuth();
+  const { user } = useAuth();
 
-  if (!currentUser || currentUser.role !== "admin") {
-    return <Navigate to="/" replace />;
+  if (!user || user.role !== "admin" || user.role !== "staff") {
+    return <Navigate to="/login" replace />;
   }
 
   return <>{children}</>;

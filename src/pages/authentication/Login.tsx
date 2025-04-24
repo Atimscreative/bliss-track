@@ -16,7 +16,7 @@ import { useAuth } from "@/hooks/useAuth";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, error, isLoading } = useAuth();
+  const { login, isLoading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -77,11 +77,11 @@ const Login = () => {
                   required
                 />
               </div>
-              {error && (
+              {/* {error && (
                 <div className="bg-red-100 p-3 rounded-md text-red-700 text-sm">
                   {error}
                 </div>
-              )}
+              )} */}
             </CardContent>
             <CardFooter>
               <Button
