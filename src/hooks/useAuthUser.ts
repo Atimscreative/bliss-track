@@ -1,7 +1,7 @@
 import { User } from "@/types";
 import { createContext, useContext } from "react";
 
-interface AuthContextType {
+interface UserAuthContextType {
   user: User | any;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
@@ -9,14 +9,12 @@ interface AuthContextType {
   isLoading: boolean;
 }
 
-export const AuthContext = createContext<AuthContextType | undefined>(
-  undefined
-);
+export const UserContext = createContext<UserAuthContextType | null>(null);
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
+export default function useAuthUser() {
+  const context = useContext(UserContext);
   if (context === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-};
+}

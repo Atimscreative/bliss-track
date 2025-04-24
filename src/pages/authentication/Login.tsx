@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(email, password);
-      navigate("/");
+      navigate("/admin");
     } catch (err) {
       // Error is already handled in the auth context
       console.log(err);

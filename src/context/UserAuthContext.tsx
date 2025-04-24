@@ -1,15 +1,14 @@
-import { AuthContext } from "@/hooks/useAuth";
+import { UserContext } from "@/hooks/useAuthUser";
 import { account, ID } from "@/services/appwrite";
-import { users } from "@/services/mockData";
 import { User } from "@/types";
 import React, { useEffect, useState } from "react";
 
-export default function AuthProvider({
+export default function UserProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [user, setUser] = useState<User | any>(users[0]);
+  const [user, setUser] = useState<User | any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function login(email: string, password: string) {
@@ -44,8 +43,8 @@ export default function AuthProvider({
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
+    <UserContext.Provider value={{ user, login, register, logout, isLoading }}>
       {children}
-    </AuthContext.Provider>
+    </UserContext.Provider>
   );
 }
